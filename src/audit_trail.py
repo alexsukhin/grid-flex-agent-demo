@@ -70,3 +70,6 @@ class AuditTrail:
         with open(filename, "w") as f:
             json.dump(self.logs, f, indent=4)
         print(f"\n[AuditTrail] Saved audit log - {filename}")
+
+    def log_llm_output(self, event, text):
+        self.log("llm", event, {"text": text})
