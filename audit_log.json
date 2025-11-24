@@ -1,112 +1,116 @@
 [
     {
-        "timestamp": "2025-11-24T18:57:28.100144+00:00",
+        "timestamp": "2025-11-24T19:09:10.925218+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T18:57:28.100114+00:00",
-            "current_load_kw": 9398,
-            "voltage_kv": 10.908,
-            "frequency_hz": 49.783,
-            "forecast_kw": 9398
+            "timestamp": "2025-11-24T19:09:10.925146+00:00",
+            "current_load_kw": 14668,
+            "voltage_kv": 10.58,
+            "frequency_hz": 49.948,
+            "forecast_kw": 14668
         }
     },
     {
-        "timestamp": "2025-11-24T18:57:29.100700+00:00",
+        "timestamp": "2025-11-24T19:09:11.926271+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T18:57:29.100583+00:00",
-            "current_load_kw": 24286,
-            "voltage_kv": 10.858,
-            "frequency_hz": 49.8,
-            "forecast_kw": 15353.2
+            "timestamp": "2025-11-24T19:09:11.926211+00:00",
+            "current_load_kw": 13049,
+            "voltage_kv": 10.939,
+            "frequency_hz": 49.781,
+            "forecast_kw": 14020.4
         }
     },
     {
-        "timestamp": "2025-11-24T18:57:29.101072+00:00",
+        "timestamp": "2025-11-24T19:09:12.926762+00:00",
+        "stage": "prediction",
+        "action": "telemetry_read",
+        "details": {
+            "timestamp": "2025-11-24T19:09:12.926693+00:00",
+            "current_load_kw": 12573,
+            "voltage_kv": 10.965,
+            "frequency_hz": 49.927,
+            "forecast_kw": 13441.44
+        }
+    },
+    {
+        "timestamp": "2025-11-24T19:09:13.927859+00:00",
+        "stage": "prediction",
+        "action": "telemetry_read",
+        "details": {
+            "timestamp": "2025-11-24T19:09:13.927712+00:00",
+            "current_load_kw": 24928,
+            "voltage_kv": 10.862,
+            "frequency_hz": 50.021,
+            "forecast_kw": 18036.064
+        }
+    },
+    {
+        "timestamp": "2025-11-24T19:09:13.928120+00:00",
         "stage": "prediction",
         "action": "overload_detected",
         "details": {
-            "required_kw": 353
+            "required_kw": 3036
         }
     },
     {
-        "timestamp": "2025-11-24T18:57:29.101583+00:00",
+        "timestamp": "2025-11-24T19:09:13.928315+00:00",
         "stage": "dispatch",
         "action": "discover_sent",
         "details": {
-            "message_id": "0e7aeb3f-9fee-490c-87cf-0a961452072c",
-            "transaction_id": "1873d811-e4a4-42f4-9a75-74c430c91858",
-            "obp_id": "obp-e5dce571-b0aa-44f2-89be-39dd2f8abb25"
+            "message_id": "29a44551-4ab1-4c3e-a8fb-2cccc4eb5eef",
+            "obp_id": "obp-3eb56b5b-2846-4743-ba77-435fbeaa75a5",
+            "transaction_id": "0748dd9b-9f60-45c5-baf2-d0198af67ab4"
         }
     },
     {
-        "timestamp": "2025-11-24T18:57:29.924125+00:00",
+        "timestamp": "2025-11-24T19:09:14.743055+00:00",
         "stage": "dispatch",
         "action": "discover_received",
         "details": {
             "count": 8,
-            "obp_id": "obp-e5dce571-b0aa-44f2-89be-39dd2f8abb25"
+            "obp_id": "obp-3eb56b5b-2846-4743-ba77-435fbeaa75a5"
         }
     },
     {
-        "timestamp": "2025-11-24T18:57:29.924168+00:00",
-        "stage": "optimisation",
-        "action": "escalation_triggered",
-        "details": {
-            "reason": "high_comfort_penalty_detected",
-            "obp_compliant": true,
-            "severity": "WARN"
-        }
-    },
-    {
-        "timestamp": "2025-11-24T18:57:29.924181+00:00",
-        "stage": "optimisation",
-        "action": "escalation_triggered",
-        "details": {
-            "reason": "slow_der_response_time",
-            "obp_compliant": true,
-            "severity": "WARN"
-        }
-    },
-    {
-        "timestamp": "2025-11-24T18:57:29.924558+00:00",
+        "timestamp": "2025-11-24T19:09:14.743431+00:00",
         "stage": "optimisation",
         "action": "der_selected",
         "details": {
-            "required_kw": 353,
+            "required_kw": 3036,
             "selected": [
                 {
-                    "id": "item-ce-glasgow-afternoon-002",
-                    "capacity_kw": 7000,
-                    "region": "Glasgow",
-                    "score": 79.11772468143786
+                    "id": "item-ce-edinburgh-evening-001",
+                    "capacity_kw": 5800,
+                    "region": "Edinburgh",
+                    "score": 80.8740519985588
                 }
             ]
         }
     },
     {
-        "timestamp": "2025-11-24T18:57:29.924633+00:00",
+        "timestamp": "2025-11-24T19:09:14.743533+00:00",
         "stage": "dispatch",
         "action": "confirm_sent",
         "details": {
-            "order_id": "order-4090aae7-9ff4-40dc-a113-e09a1eeeaf04",
+            "order_id": "order-5da785fb-c5c5-45d0-ad4f-7df2f77b282d",
             "selected_ids": [
-                "item-ce-glasgow-afternoon-002"
+                "item-ce-edinburgh-evening-001"
             ],
-            "transaction_id": "1873d811-e4a4-42f4-9a75-74c430c91858",
-            "obp_id": "obp-e5dce571-b0aa-44f2-89be-39dd2f8abb25"
+            "transaction_id": "0748dd9b-9f60-45c5-baf2-d0198af67ab4",
+            "obp_id": "obp-3eb56b5b-2846-4743-ba77-435fbeaa75a5"
         }
     },
     {
-        "timestamp": "2025-11-24T18:57:30.494203+00:00",
+        "timestamp": "2025-11-24T19:09:15.343886+00:00",
         "stage": "dispatch",
         "action": "status_requested",
         "details": {
-            "order_id": "order-4090aae7-9ff4-40dc-a113-e09a1eeeaf04",
-            "transaction_id": "1873d811-e4a4-42f4-9a75-74c430c91858",
-            "obp_id": "obp-e5dce571-b0aa-44f2-89be-39dd2f8abb25"
+            "order_id": "order-5da785fb-c5c5-45d0-ad4f-7df2f77b282d",
+            "transaction_id": "0748dd9b-9f60-45c5-baf2-d0198af67ab4",
+            "obp_id": "obp-3eb56b5b-2846-4743-ba77-435fbeaa75a5"
         }
     }
 ]

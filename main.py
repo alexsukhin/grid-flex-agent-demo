@@ -1,8 +1,10 @@
 from src.prediction.prediction_agent import PredictionAgent
-from src.optimisation_agent import OptimisationAgent
-from src.dispatch_agent import DispatchAgent
+from src.optimisation.optimisation_agent import OptimisationAgent
+from src.dispatch.dispatch_agent import DispatchAgent
 from src.audit_trail import AuditTrail
 import time
+
+SANDBOX = "https://deg-hackathon-bap-sandbox.becknprotocol.io/api"
 
 def main():
     print("\n=== PROJECT REFLEX — FULL WORKFLOW ===")
@@ -11,7 +13,7 @@ def main():
 
     predictor  = PredictionAgent(audit)
     optimiser  = OptimisationAgent(audit)
-    dispatcher = DispatchAgent(audit)
+    dispatcher = DispatchAgent(audit, SANDBOX)
 
     required_kw = 0
 
