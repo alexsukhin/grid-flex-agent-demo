@@ -1,120 +1,112 @@
 [
     {
-        "timestamp": "2025-11-24T17:56:39.486017+00:00",
+        "timestamp": "2025-11-24T18:57:28.100144+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T17:56:39.485991+00:00",
-            "current_load_kw": 14426,
-            "voltage_kv": 10.512,
-            "frequency_hz": 49.852,
-            "forecast_kw": 14426
+            "timestamp": "2025-11-24T18:57:28.100114+00:00",
+            "current_load_kw": 9398,
+            "voltage_kv": 10.908,
+            "frequency_hz": 49.783,
+            "forecast_kw": 9398
         }
     },
     {
-        "timestamp": "2025-11-24T17:56:40.486408+00:00",
+        "timestamp": "2025-11-24T18:57:29.100700+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T17:56:40.486359+00:00",
-            "current_load_kw": 10200,
-            "voltage_kv": 10.7,
-            "frequency_hz": 49.824,
-            "forecast_kw": 12735.6
+            "timestamp": "2025-11-24T18:57:29.100583+00:00",
+            "current_load_kw": 24286,
+            "voltage_kv": 10.858,
+            "frequency_hz": 49.8,
+            "forecast_kw": 15353.2
         }
     },
     {
-        "timestamp": "2025-11-24T17:56:41.486881+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T17:56:41.486813+00:00",
-            "current_load_kw": 13384,
-            "voltage_kv": 10.725,
-            "frequency_hz": 49.808,
-            "forecast_kw": 12994.96
-        }
-    },
-    {
-        "timestamp": "2025-11-24T17:56:42.487566+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T17:56:42.487507+00:00",
-            "current_load_kw": 12293,
-            "voltage_kv": 10.682,
-            "frequency_hz": 50.011,
-            "forecast_kw": 12714.176
-        }
-    },
-    {
-        "timestamp": "2025-11-24T17:56:43.488031+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T17:56:43.487964+00:00",
-            "current_load_kw": 19623,
-            "voltage_kv": 10.85,
-            "frequency_hz": 49.979,
-            "forecast_kw": 15477.705600000001
-        }
-    },
-    {
-        "timestamp": "2025-11-24T17:56:43.488710+00:00",
+        "timestamp": "2025-11-24T18:57:29.101072+00:00",
         "stage": "prediction",
         "action": "overload_detected",
         "details": {
-            "required_kw": 477
+            "required_kw": 353
         }
     },
     {
-        "timestamp": "2025-11-24T17:56:43.488800+00:00",
+        "timestamp": "2025-11-24T18:57:29.101583+00:00",
         "stage": "dispatch",
         "action": "discover_sent",
         "details": {
-            "message_id": "4ba2b61c-55d1-4774-8a26-de4ee716476e"
+            "message_id": "0e7aeb3f-9fee-490c-87cf-0a961452072c",
+            "transaction_id": "1873d811-e4a4-42f4-9a75-74c430c91858",
+            "obp_id": "obp-e5dce571-b0aa-44f2-89be-39dd2f8abb25"
         }
     },
     {
-        "timestamp": "2025-11-24T17:56:44.219453+00:00",
+        "timestamp": "2025-11-24T18:57:29.924125+00:00",
         "stage": "dispatch",
         "action": "discover_received",
         "details": {
-            "windows_found": 8
+            "count": 8,
+            "obp_id": "obp-e5dce571-b0aa-44f2-89be-39dd2f8abb25"
         }
     },
     {
-        "timestamp": "2025-11-24T17:56:44.219542+00:00",
+        "timestamp": "2025-11-24T18:57:29.924168+00:00",
+        "stage": "optimisation",
+        "action": "escalation_triggered",
+        "details": {
+            "reason": "high_comfort_penalty_detected",
+            "obp_compliant": true,
+            "severity": "WARN"
+        }
+    },
+    {
+        "timestamp": "2025-11-24T18:57:29.924181+00:00",
+        "stage": "optimisation",
+        "action": "escalation_triggered",
+        "details": {
+            "reason": "slow_der_response_time",
+            "obp_compliant": true,
+            "severity": "WARN"
+        }
+    },
+    {
+        "timestamp": "2025-11-24T18:57:29.924558+00:00",
         "stage": "optimisation",
         "action": "der_selected",
         "details": {
-            "required_kw": 477,
+            "required_kw": 353,
             "selected": [
                 {
-                    "id": "item-ce-edinburgh-evening-001",
-                    "capacity_kw": 5800,
-                    "region": "Edinburgh"
+                    "id": "item-ce-glasgow-afternoon-002",
+                    "capacity_kw": 7000,
+                    "region": "Glasgow",
+                    "score": 79.11772468143786
                 }
             ]
         }
     },
     {
-        "timestamp": "2025-11-24T17:56:44.219578+00:00",
+        "timestamp": "2025-11-24T18:57:29.924633+00:00",
         "stage": "dispatch",
         "action": "confirm_sent",
         "details": {
-            "order_id": "order-251dc0f3-4624-478e-8644-8879f9e3d958",
+            "order_id": "order-4090aae7-9ff4-40dc-a113-e09a1eeeaf04",
             "selected_ids": [
-                "item-ce-edinburgh-evening-001"
-            ]
+                "item-ce-glasgow-afternoon-002"
+            ],
+            "transaction_id": "1873d811-e4a4-42f4-9a75-74c430c91858",
+            "obp_id": "obp-e5dce571-b0aa-44f2-89be-39dd2f8abb25"
         }
     },
     {
-        "timestamp": "2025-11-24T17:56:44.796021+00:00",
+        "timestamp": "2025-11-24T18:57:30.494203+00:00",
         "stage": "dispatch",
         "action": "status_requested",
         "details": {
-            "order_id": "order-251dc0f3-4624-478e-8644-8879f9e3d958"
+            "order_id": "order-4090aae7-9ff4-40dc-a113-e09a1eeeaf04",
+            "transaction_id": "1873d811-e4a4-42f4-9a75-74c430c91858",
+            "obp_id": "obp-e5dce571-b0aa-44f2-89be-39dd2f8abb25"
         }
     }
 ]

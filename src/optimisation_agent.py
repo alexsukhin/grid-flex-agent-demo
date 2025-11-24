@@ -7,7 +7,20 @@ class OptimisationAgent:
     def select_der(self, windows, required_kw):
         if not windows:
             print("[OptimisationAgent] No DER windows available!")
+            self.audit.log_escalation("no_windows_found")
             return []
+
+        if all(w.get("reservation_required") for w in windows):
+            self.audit.log_escalation("all_reservation_required")
+
+        if any((w.get("comfort_penalty") or 0) > 0.8 for w in windows):
+            self.audit.log_escalation("high_comfort_penalty_detected")
+
+        if any(w.get("price_stability") == "volatile" for w in windows):
+            self.audit.log_escalation("price_instability_detected")
+
+        if any((w.get("response_time_s") or 99) > 8 for w in windows):
+            self.audit.log_escalation("slow_der_response_time")
 
         windows = self.prepare_windows(windows)
         windows = self.rank_windows(windows)
@@ -58,6 +71,9 @@ class OptimisationAgent:
 
     def rank_windows(self, windows):
         ranked = sorted(windows, key=self.score, reverse=True)
+        for w in ranked:
+            w["composite_score"] = self.score(w)
+
         best = ranked[0]
 
         print("\n[OptimisationAgent] Highest composite score:")

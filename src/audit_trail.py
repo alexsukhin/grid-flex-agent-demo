@@ -23,34 +23,39 @@ class AuditTrail:
         self.log("prediction", "overload_detected", {
             "required_kw": required_kw
         })
-    
-    def log_escalation(self, reason):
-        self.log("optimisation", "escalation_triggered", {"reason": reason})
-
-
-    def log_discover_sent(self, message_id):
-        self.log("dispatch", "discover_sent", {"message_id": message_id})
-
-    def log_discover_received(self, count):
-        self.log("dispatch", "discover_received", {"windows_found": count})
 
     def log_selection(self, selected, required_kw):
         self.log("optimisation", "der_selected", {
             "required_kw": required_kw,
             "selected": [
-                {"id": w["id"], "capacity_kw": w["capacity_kw"], "region": w["region"]}
+                {
+                    "id": w.get("id"),
+                    "capacity_kw": w.get("capacity_kw"),
+                    "region": w.get("region"),
+                    "score": w.get("composite_score")
+                }
                 for w in selected
             ]
         })
 
-    def log_confirm_sent(self, order_id, selected):
-        self.log("dispatch", "confirm_sent", {
-            "order_id": order_id,
-            "selected_ids": [w["id"] for w in selected]
+    def log_escalation(self, reason):
+        self.log("optimisation", "escalation_triggered", {
+            "reason": reason,
+            "obp_compliant": True,
+            "severity": "WARN"
         })
 
-    def log_status_requested(self, order_id):
-        self.log("dispatch", "status_requested", {"order_id": order_id})
+    def log_discover_sent(self, meta):
+        self.log("dispatch", "discover_sent", meta)
+
+    def log_discover_received(self, meta):
+        self.log("dispatch", "discover_received", meta)
+
+    def log_confirm_sent(self, meta):
+        self.log("dispatch", "confirm_sent", meta)
+
+    def log_status_requested(self, meta):
+        self.log("dispatch", "status_requested", meta)
 
     def print_audit(self):
         print("\n=== AUDIT TRAIL ===")
@@ -58,10 +63,10 @@ class AuditTrail:
             print(f"\n[{entry['timestamp']}]")
             print(f" Stage : {entry['stage']}")
             print(f" Action: {entry['action']}")
-            print(f" Details:")
+            print(" Details:")
             print(json.dumps(entry["details"], indent=4))
 
     def dump_json(self, filename="audit_log.json"):
         with open(filename, "w") as f:
             json.dump(self.logs, f, indent=4)
-        print(f"\n[AuditTrail] Saved audit log → {filename}")
+        print(f"\n[AuditTrail] Saved audit log - {filename}")

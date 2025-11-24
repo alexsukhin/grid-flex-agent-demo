@@ -1,4 +1,4 @@
-from src.prediction_agent import PredictionAgent
+from src.prediction.prediction_agent import PredictionAgent
 from src.optimisation_agent import OptimisationAgent
 from src.dispatch_agent import DispatchAgent
 from src.audit_trail import AuditTrail

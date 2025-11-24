@@ -13,11 +13,18 @@ class DispatchAgent:
     def __init__(self, audit):
         self.audit = audit
         self.transaction_id = str(uuid.uuid4())
+        self.obp_id = f"obp-{uuid.uuid4()}"
         print(f"[DispatchAgent] Transaction: {self.transaction_id}")
+        print(f"[DispatchAgent] OBP ID: {self.obp_id}")
 
     def discover(self):
         message_id = str(uuid.uuid4())
-        self.audit.log_discover_sent(message_id)
+
+        self.audit.log_discover_sent({
+            "message_id": message_id,
+            "transaction_id": self.transaction_id,
+            "obp_id": self.obp_id
+        })
 
         payload = {
             "context": {
@@ -107,6 +114,8 @@ class DispatchAgent:
                     "window_start": t.get("start"),
                     "window_end": t.get("end"),
                     "window_duration": t.get("duration"),
+                    
+                    "reservation_required": c.get("reservationRequired"),
 
                     "comfort_penalty": comfort_penalty,
                     "availability_score": availability_score,
@@ -118,18 +127,26 @@ class DispatchAgent:
                 })
 
         print(f"[DispatchAgent] Extracted {len(windows)} DER windows")
-        self.audit.log_discover_received(len(windows))
 
+        self.audit.log_discover_received({
+            "count": len(windows),
+            "obp_id": self.obp_id
+        })
         return windows
 
 
     def confirm(self, selected_windows, required_kw):
-        order_id = f"order-{uuid.uuid4()}"
-        self.audit.log_confirm_sent(order_id, selected_windows)
-
         if not isinstance(selected_windows, list):
             selected_windows = [selected_windows]
-
+    
+        order_id = f"order-{uuid.uuid4()}"
+        
+        self.audit.log_confirm_sent({
+            "order_id": order_id,
+            "selected_ids": [w["id"] for w in selected_windows],
+            "transaction_id": self.transaction_id,
+            "obp_id": self.obp_id
+        })
         order_items = []
 
         for idx, w in enumerate(selected_windows):
@@ -218,7 +235,11 @@ class DispatchAgent:
 
 
     def status(self, order_id):
-        self.audit.log_status_requested(order_id)
+        self.audit.log_status_requested({
+            "order_id": order_id,
+            "transaction_id": self.transaction_id,
+            "obp_id": self.obp_id
+        })
 
         payload = {
             "context": {
