@@ -1,0 +1,99 @@
+[
+    {
+        "timestamp": "2025-11-24T17:15:38.205243+00:00",
+        "stage": "prediction",
+        "action": "telemetry_read",
+        "details": {
+            "timestamp": "2025-11-24T17:15:38.204941+00:00",
+            "current_load_kw": 14318,
+            "voltage_kv": 10.917,
+            "frequency_hz": 49.777
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:15:39.205519+00:00",
+        "stage": "prediction",
+        "action": "telemetry_read",
+        "details": {
+            "timestamp": "2025-11-24T17:15:39.205473+00:00",
+            "current_load_kw": 11584,
+            "voltage_kv": 10.665,
+            "frequency_hz": 49.848
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:15:40.205892+00:00",
+        "stage": "prediction",
+        "action": "telemetry_read",
+        "details": {
+            "timestamp": "2025-11-24T17:15:40.205856+00:00",
+            "current_load_kw": 24842,
+            "voltage_kv": 10.782,
+            "frequency_hz": 49.871
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:15:40.206030+00:00",
+        "stage": "prediction",
+        "action": "overload_detected",
+        "details": {
+            "required_kw": 9842
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:15:40.206104+00:00",
+        "stage": "dispatch",
+        "action": "discover_sent",
+        "details": {
+            "message_id": "8610f328-2928-4fa5-9fe9-4bd9e4da8d7b"
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:15:40.986824+00:00",
+        "stage": "dispatch",
+        "action": "discover_received",
+        "details": {
+            "windows_found": 8
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:15:40.986982+00:00",
+        "stage": "optimisation",
+        "action": "der_selected",
+        "details": {
+            "required_kw": 9842,
+            "selected": [
+                {
+                    "id": "item-ce-liverpool-evening-001",
+                    "capacity_kw": 5400,
+                    "region": "Liverpool"
+                },
+                {
+                    "id": "item-ce-manchester-afternoon-001",
+                    "capacity_kw": 4500,
+                    "region": "Manchester"
+                }
+            ]
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:15:40.987123+00:00",
+        "stage": "dispatch",
+        "action": "confirm_sent",
+        "details": {
+            "order_id": "order-8b66c56c-e7e3-47b6-9896-5b7ac7bd6e0e",
+            "selected_ids": [
+                "item-ce-liverpool-evening-001",
+                "item-ce-manchester-afternoon-001"
+            ]
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:15:41.521498+00:00",
+        "stage": "dispatch",
+        "action": "status_requested",
+        "details": {
+            "order_id": "order-8b66c56c-e7e3-47b6-9896-5b7ac7bd6e0e"
+        }
+    }
+]

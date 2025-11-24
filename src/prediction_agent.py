@@ -6,7 +6,8 @@ def now():
 
 
 class PredictionAgent:
-    def __init__(self):
+    def __init__(self, audit):
+        self.audit = audit
         self.feeder_limit_kw = 15_000
 
     def read_feeder_data(self):
@@ -27,6 +28,8 @@ class PredictionAgent:
     def predict_overload(self):
         data = self.read_feeder_data()
 
+        self.audit.log_prediction(data)
+
         print(f"\n[PredictionAgent] Feeder telemetry @ {data['timestamp']}")
         print(f"  Load: {data['current_load_kw']} kW")
         print(f"  Voltage: {data['voltage_kv']} kV")
@@ -35,6 +38,7 @@ class PredictionAgent:
         if data["current_load_kw"] > self.feeder_limit_kw:
             deficit = data["current_load_kw"] - self.feeder_limit_kw
             print(f"[PredictionAgent] Overload detected — Need {deficit} kW flexibility")
+            self.audit.log_overload(deficit)
             return deficit
 
         print("[PredictionAgent] No overload detected — no flexibility needed")

@@ -8,14 +8,15 @@ SANDBOX = "https://deg-hackathon-bap-sandbox.becknprotocol.io/api"
 def now():
     return datetime.now(timezone.utc).isoformat()
 
-
 class DispatchAgent:
-    def __init__(self):
+    def __init__(self, audit):
+        self.audit = audit
         self.transaction_id = str(uuid.uuid4())
         print(f"[DispatchAgent] Transaction: {self.transaction_id}")
 
     def discover(self):
         message_id = str(uuid.uuid4())
+        self.audit.log_discover_sent(message_id)
 
         payload = {
             "context": {
@@ -42,10 +43,10 @@ class DispatchAgent:
         }
 
         print("\n=== /discover ===")
-        r = requests.post(f"{SANDBOX}/discover", json=payload)
-        print("STATUS:", r.status_code)
+        response = requests.post(f"{SANDBOX}/discover", json=payload)
+        print("STATUS:", response.status_code)
 
-        return r.json()
+        return response.json()
 
     def extract_windows(self, discover_json):
         windows = []
@@ -104,10 +105,13 @@ class DispatchAgent:
                 })
 
         print(f"[DispatchAgent] Extracted {len(windows)} DER windows")
+        self.audit.log_discover_received(len(windows))
+
         return windows
 
     def confirm(self, selected_windows, required_kw):
         order_id = f"order-{uuid.uuid4()}"
+        self.audit.log_confirm_sent(order_id, selected_windows)
 
         if not isinstance(selected_windows, list):
             selected_windows = [selected_windows]
@@ -164,12 +168,14 @@ class DispatchAgent:
         }
 
         print("\n=== /confirm ===")
-        r = requests.post(f"{SANDBOX}/confirm", json=payload)
-        print("STATUS:", r.status_code)
+        response = requests.post(f"{SANDBOX}/confirm", json=payload)
+        print("STATUS:", response.status_code)
         return order_id
 
 
     def status(self, order_id):
+        self.audit.log_status_requested(order_id)
+
         payload = {
             "context": {
                 "version": "2.0.0",
@@ -190,6 +196,6 @@ class DispatchAgent:
         }
 
         print("\n=== /status ===")
-        r = requests.post(f"{SANDBOX}/status", json=payload)
-        print("STATUS:", r.status_code)
-        return r.text
+        response = requests.post(f"{SANDBOX}/status", json=payload)
+        print("STATUS:", response.status_code)
+        return response.text
