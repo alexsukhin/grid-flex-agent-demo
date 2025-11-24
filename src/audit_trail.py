@@ -23,6 +23,10 @@ class AuditTrail:
         self.log("prediction", "overload_detected", {
             "required_kw": required_kw
         })
+    
+    def log_escalation(self, reason):
+        self.log("optimisation", "escalation_triggered", {"reason": reason})
+
 
     def log_discover_sent(self, message_id):
         self.log("dispatch", "discover_sent", {"message_id": message_id})

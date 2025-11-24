@@ -1,46 +1,82 @@
 [
     {
-        "timestamp": "2025-11-24T17:41:25.660640+00:00",
+        "timestamp": "2025-11-24T17:56:39.486017+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T17:41:25.660532+00:00",
-            "current_load_kw": 12551,
-            "voltage_kv": 10.579,
-            "frequency_hz": 50.099,
-            "forecast_kw": 12551
+            "timestamp": "2025-11-24T17:56:39.485991+00:00",
+            "current_load_kw": 14426,
+            "voltage_kv": 10.512,
+            "frequency_hz": 49.852,
+            "forecast_kw": 14426
         }
     },
     {
-        "timestamp": "2025-11-24T17:41:26.660905+00:00",
+        "timestamp": "2025-11-24T17:56:40.486408+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T17:41:26.660857+00:00",
-            "current_load_kw": 26607,
-            "voltage_kv": 10.807,
-            "frequency_hz": 49.807,
-            "forecast_kw": 18173.4
+            "timestamp": "2025-11-24T17:56:40.486359+00:00",
+            "current_load_kw": 10200,
+            "voltage_kv": 10.7,
+            "frequency_hz": 49.824,
+            "forecast_kw": 12735.6
         }
     },
     {
-        "timestamp": "2025-11-24T17:41:26.661003+00:00",
+        "timestamp": "2025-11-24T17:56:41.486881+00:00",
+        "stage": "prediction",
+        "action": "telemetry_read",
+        "details": {
+            "timestamp": "2025-11-24T17:56:41.486813+00:00",
+            "current_load_kw": 13384,
+            "voltage_kv": 10.725,
+            "frequency_hz": 49.808,
+            "forecast_kw": 12994.96
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:56:42.487566+00:00",
+        "stage": "prediction",
+        "action": "telemetry_read",
+        "details": {
+            "timestamp": "2025-11-24T17:56:42.487507+00:00",
+            "current_load_kw": 12293,
+            "voltage_kv": 10.682,
+            "frequency_hz": 50.011,
+            "forecast_kw": 12714.176
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:56:43.488031+00:00",
+        "stage": "prediction",
+        "action": "telemetry_read",
+        "details": {
+            "timestamp": "2025-11-24T17:56:43.487964+00:00",
+            "current_load_kw": 19623,
+            "voltage_kv": 10.85,
+            "frequency_hz": 49.979,
+            "forecast_kw": 15477.705600000001
+        }
+    },
+    {
+        "timestamp": "2025-11-24T17:56:43.488710+00:00",
         "stage": "prediction",
         "action": "overload_detected",
         "details": {
-            "required_kw": 3173
+            "required_kw": 477
         }
     },
     {
-        "timestamp": "2025-11-24T17:41:26.661058+00:00",
+        "timestamp": "2025-11-24T17:56:43.488800+00:00",
         "stage": "dispatch",
         "action": "discover_sent",
         "details": {
-            "message_id": "0d360491-3035-400a-add2-31ff9a8a42ad"
+            "message_id": "4ba2b61c-55d1-4774-8a26-de4ee716476e"
         }
     },
     {
-        "timestamp": "2025-11-24T17:41:27.386167+00:00",
+        "timestamp": "2025-11-24T17:56:44.219453+00:00",
         "stage": "dispatch",
         "action": "discover_received",
         "details": {
@@ -48,37 +84,37 @@
         }
     },
     {
-        "timestamp": "2025-11-24T17:41:27.386298+00:00",
+        "timestamp": "2025-11-24T17:56:44.219542+00:00",
         "stage": "optimisation",
         "action": "der_selected",
         "details": {
-            "required_kw": 3173,
+            "required_kw": 477,
             "selected": [
                 {
-                    "id": "item-ce-glasgow-afternoon-002",
-                    "capacity_kw": 7000,
-                    "region": "Glasgow"
+                    "id": "item-ce-edinburgh-evening-001",
+                    "capacity_kw": 5800,
+                    "region": "Edinburgh"
                 }
             ]
         }
     },
     {
-        "timestamp": "2025-11-24T17:41:27.386337+00:00",
+        "timestamp": "2025-11-24T17:56:44.219578+00:00",
         "stage": "dispatch",
         "action": "confirm_sent",
         "details": {
-            "order_id": "order-89991cd4-2632-4859-ad83-d30fdb34e94e",
+            "order_id": "order-251dc0f3-4624-478e-8644-8879f9e3d958",
             "selected_ids": [
-                "item-ce-glasgow-afternoon-002"
+                "item-ce-edinburgh-evening-001"
             ]
         }
     },
     {
-        "timestamp": "2025-11-24T17:41:27.953070+00:00",
+        "timestamp": "2025-11-24T17:56:44.796021+00:00",
         "stage": "dispatch",
         "action": "status_requested",
         "details": {
-            "order_id": "order-89991cd4-2632-4859-ad83-d30fdb34e94e"
+            "order_id": "order-251dc0f3-4624-478e-8644-8879f9e3d958"
         }
     }
 ]

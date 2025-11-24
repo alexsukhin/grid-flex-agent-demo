@@ -17,14 +17,20 @@ class OptimisationAgent:
             self.audit.log_selection(single, required_kw)
             return single
 
+        total_capacity = sum(w["capacity_kw"] for w in windows)
+        if total_capacity < required_kw:
+            print("[OptimisationAgent] Escalation: insufficient DER flexibility!")
+            self.audit.log_escalation("insufficient_total_capacity")
+            self.audit.log_selection(windows, required_kw)
+            return windows
+
         subset = self.knapsack_minimal_feasible(windows, required_kw)
         self.audit.log_selection(subset, required_kw)
-        
+
         print("\n[OptimisationAgent] Selected DER set (knapsack):")
         print(f"  Total: {sum(w['capacity_kw'] for w in subset)} kW (needed {required_kw} kW)")
         for w in subset:
             print(f"   - {w['id']} | {w['capacity_kw']} kW | RE {w['renewable_mix']}%")
-        
 
         return subset
 
@@ -34,14 +40,37 @@ class OptimisationAgent:
         return windows
 
     def score(self, w):
-        return (w.get("renewable_mix") or 0) * 2 - (w.get("carbon_intensity") or 999)
+        ren = w.get("renewable_mix") or 0
+        ci  = w.get("carbon_intensity") or 999
+        cost = w.get("price_kw") or 0.15
+        comfort = w.get("comfort_penalty") or 0.5
+        avail = w.get("availability_score") or 0.8
+        response = w.get("response_time_s") or 5
+
+        return (
+            ren * 1.5
+            - ci * 0.5
+            - cost * 40
+            - comfort * 20
+            + avail * 30
+            - response * 2
+        )
 
     def rank_windows(self, windows):
         ranked = sorted(windows, key=self.score, reverse=True)
         best = ranked[0]
-        print("\n[OptimisationAgent] Highest-scoring DER overall:")
-        print(f"   - {best['id']} | {best['capacity_kw']} kW | RE {best['renewable_mix']}%")
+
+        print("\n[OptimisationAgent] Highest composite score:")
+        print(
+            f"   - {best['id']} | "
+            f"Score = {round(self.score(best), 2)} | "
+            f"Capacity = {best['capacity_kw']} kW | "
+            f"RE = {best['renewable_mix']}% | "
+            f"Carbon = {best['carbon_intensity']} gCO2/kWh"
+        )
+
         return ranked
+
 
     def pick_single(self, windows, required_kw):
         for w in windows:
@@ -63,8 +92,4 @@ class OptimisationAgent:
                         best_overshoot = overshoot
                         best_subset = subset
 
-        if best_subset is None:
-            print("[OptimisationAgent] No feasible combination — selecting all DERs.")
-            return windows
-        
         return list(best_subset)
