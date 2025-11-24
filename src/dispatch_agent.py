@@ -106,8 +106,28 @@ class DispatchAgent:
         print(f"[DispatchAgent] Extracted {len(windows)} DER windows")
         return windows
 
-    def confirm(self, selected_window, required_kw):
+    def confirm(self, selected_windows, required_kw):
         order_id = f"order-{uuid.uuid4()}"
+
+        if not isinstance(selected_windows, list):
+            selected_windows = [selected_windows]
+
+        order_items = []
+        for idx, w in enumerate(selected_windows):
+
+            order_items.append({
+                "@type": "beckn:OrderItem",
+                "beckn:lineId": f"der-{idx+1}",
+                "beckn:orderedItem": w["id"],
+                "beckn:orderItemAttributes": {
+                    "@type": "beckn:DemandFlexibilityActivation",
+                    "beckn:consumerId": w["provider_id"],
+                    "beckn:requestedReduction": min(required_kw, w["capacity_mw"] * 1000),
+                    "beckn:requestedReductionUnit": "kW",
+                    "beckn:activationTime": now(),
+                    "beckn:duration": w["window_duration"],
+                }
+            })
 
         payload = {
             "context": {
@@ -123,43 +143,21 @@ class DispatchAgent:
                 "bpp_uri": "https://ev-charging.sandbox1.com/bpp",
                 "ttl": "PT30S"
             },
+
             "message": {
                 "order": {
                     "@type": "beckn:Order",
                     "order_id": order_id,
 
-                    "selected_window": {
-                        "id": selected_window["id"],
-                        "item_name": selected_window["item_name"],
-                        "item_description": selected_window["item_description"],
-                        "region": selected_window["region"],
-                        "grid_zone": selected_window["grid_zone"],
-                        "provider_name": selected_window["provider_name"],
-                    },
+                    "orderItems": order_items,
 
-                    "activation_parameters": {
-                        "requested_reduction_kw": required_kw,
-                        "renewable_mix": selected_window["renewable_mix"],
-                        "renewable_mix_unit": selected_window["renewable_mix_unit"],
-                        "carbon_intensity": selected_window["carbon_intensity"],
-                        "carbon_intensity_unit": selected_window["carbon_intensity_unit"],
-                        "capacity_mw": selected_window["capacity_mw"],
-                        "capacity_unit": selected_window["capacity_unit"],
-                        "reservation_required": selected_window["reservation_required"],
-                    },
+                    "beckn:totalRequestedReduction": required_kw,
+                    "beckn:totalRequestedReductionUnit": "kW",
 
-                    "time_window": {
-                        "start": selected_window["window_start"],
-                        "end": selected_window["window_end"],
-                        "duration": selected_window["window_duration"]
-                    },
-
-                    "location": {
-                        "polygon": selected_window["location_polygon"],
-                        "locality": selected_window["address_locality"],
-                        "region": selected_window["address_region"],
-                        "country": selected_window["address_country"],
-                        "full_address": selected_window["address_full"]
+                    "beckn:fulfillment": {
+                        "@type": "beckn:Fulfillment",
+                        "beckn:mode": "DEMAND_RESPONSE",
+                        "beckn:status": "PENDING"
                     }
                 }
             }

@@ -4,14 +4,22 @@ from datetime import datetime, timezone
 def now():
     return datetime.now(timezone.utc).isoformat()
 
+
 class PredictionAgent:
     def __init__(self):
-        self.feeder_limit_kw = 5000  
+        self.feeder_limit_kw = 15_000
 
     def read_feeder_data(self):
+        overload_roll = random.random() < 0.30
+
+        if overload_roll:
+            current_load = self.feeder_limit_kw + random.randint(2000, 15000)
+        else:
+            current_load = random.randint(9000, 14800)
+
         return {
             "timestamp": now(),
-            "current_load_kw": random.randint(4200, 5600),
+            "current_load_kw": current_load,
             "voltage_kv": round(random.uniform(10.5, 11.0), 3),
             "frequency_hz": round(random.uniform(49.7, 50.1), 3),
         }
