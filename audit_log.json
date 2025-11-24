@@ -1,89 +1,45 @@
 [
     {
-        "timestamp": "2025-11-24T20:31:56.847403+00:00",
+        "timestamp": "2025-11-24T22:23:29.119396+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T20:31:56.847362+00:00",
-            "current_load_kw": 9009,
-            "voltage_kv": 10.687,
-            "frequency_hz": 49.829,
-            "forecast_kw": 9009
+            "timestamp": "2025-11-24T22:23:29.119359+00:00",
+            "current_load_kw": 22195,
+            "voltage_kv": 10.616,
+            "frequency_hz": 49.838,
+            "forecast_kw": 22195
         }
     },
     {
-        "timestamp": "2025-11-24T20:31:57.847861+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T20:31:57.847801+00:00",
-            "current_load_kw": 10773,
-            "voltage_kv": 10.586,
-            "frequency_hz": 49.942,
-            "forecast_kw": 9714.599999999999
-        }
-    },
-    {
-        "timestamp": "2025-11-24T20:31:58.849156+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T20:31:58.849092+00:00",
-            "current_load_kw": 22331,
-            "voltage_kv": 10.557,
-            "frequency_hz": 50.021,
-            "forecast_kw": 14761.16
-        }
-    },
-    {
-        "timestamp": "2025-11-24T20:31:59.850879+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T20:31:59.850817+00:00",
-            "current_load_kw": 27708,
-            "voltage_kv": 10.859,
-            "frequency_hz": 50.034,
-            "forecast_kw": 19939.896
-        }
-    },
-    {
-        "timestamp": "2025-11-24T20:31:59.851033+00:00",
+        "timestamp": "2025-11-24T22:23:29.119473+00:00",
         "stage": "prediction",
         "action": "overload_detected",
         "details": {
-            "required_kw": 4939
+            "required_kw": 7195
         }
     },
     {
-        "timestamp": "2025-11-24T20:32:01.241092+00:00",
-        "stage": "llm",
-        "action": "overload_explanation",
-        "details": {
-            "text": "The system just flagged a power surge that\u2019s a bit too high for its current load."
-        }
-    },
-    {
-        "timestamp": "2025-11-24T20:32:01.241195+00:00",
+        "timestamp": "2025-11-24T22:23:29.120666+00:00",
         "stage": "dispatch",
         "action": "discover_sent",
         "details": {
-            "message_id": "89ac52dc-42fa-4832-9bc3-ed6380677e20",
-            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18",
-            "transaction_id": "2aaa178b-e509-47fb-8e11-df0973e45bad"
+            "message_id": "f910fb98-a9aa-4d0e-af57-2fd8eb41f0cc",
+            "obp_id": "obp-22807ad3-23c8-433f-96ab-910d4e113b61",
+            "transaction_id": "f6589ded-1e94-49d1-b2f8-2a2fbcad2bb5"
         }
     },
     {
-        "timestamp": "2025-11-24T20:32:02.006384+00:00",
+        "timestamp": "2025-11-24T22:23:29.802053+00:00",
         "stage": "dispatch",
         "action": "discover_received",
         "details": {
             "count": 8,
-            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18"
+            "obp_id": "obp-22807ad3-23c8-433f-96ab-910d4e113b61"
         }
     },
     {
-        "timestamp": "2025-11-24T20:32:02.006446+00:00",
+        "timestamp": "2025-11-24T22:23:29.802125+00:00",
         "stage": "optimisation",
         "action": "escalation_triggered",
         "details": {
@@ -93,7 +49,7 @@
         }
     },
     {
-        "timestamp": "2025-11-24T20:32:02.006454+00:00",
+        "timestamp": "2025-11-24T22:23:29.802134+00:00",
         "stage": "optimisation",
         "action": "escalation_triggered",
         "details": {
@@ -103,71 +59,60 @@
         }
     },
     {
-        "timestamp": "2025-11-24T20:32:02.006458+00:00",
+        "timestamp": "2025-11-24T22:23:29.802137+00:00",
         "stage": "optimisation",
         "action": "escalation_triggered",
         "details": {
-            "reason": "mode_selected:incentive",
+            "reason": "mode_selected:emergency",
             "obp_compliant": true,
             "severity": "WARN"
         }
     },
     {
-        "timestamp": "2025-11-24T20:32:02.006620+00:00",
+        "timestamp": "2025-11-24T22:23:29.802283+00:00",
         "stage": "optimisation",
         "action": "der_selected",
         "details": {
-            "required_kw": 4939,
+            "required_kw": 7195,
             "selected": [
                 {
-                    "id": "item-ce-edinburgh-evening-001",
-                    "capacity_kw": 5800,
-                    "region": "Edinburgh",
-                    "score": 74.2067718727383
+                    "id": "item-ce-leeds-night-001",
+                    "capacity_kw": 3800,
+                    "region": "Leeds",
+                    "score": null
+                },
+                {
+                    "id": "item-ce-manchester-afternoon-001",
+                    "capacity_kw": 4500,
+                    "region": "Manchester",
+                    "score": null
                 }
             ]
         }
     },
     {
-        "timestamp": "2025-11-24T20:32:03.704967+00:00",
-        "stage": "llm",
-        "action": "selection_explained",
-        "details": {
-            "text": "The single 4\u2011hour window (18:00\u201122:00) from GridFlex Agent UK provides 5.8\u202fMW of capacity, comfortably exceeding the 4.939\u202fMW requirement and eliminating any shortfall. It offers a high renewable mix (85\u202f%) and low carbon intensity (110\u202fg\u202fCO\u2082/kWh), a strong availability score (0.86), and a modest comfort penalty, making it the most incentive\u2011aligned choice."
-        }
-    },
-    {
-        "timestamp": "2025-11-24T20:32:03.705153+00:00",
+        "timestamp": "2025-11-24T22:23:29.802759+00:00",
         "stage": "dispatch",
         "action": "confirm_sent",
         "details": {
-            "order_id": "order-2210f339-2a33-47e5-9bbb-a72f0d0eff6b",
+            "order_id": "order-23bd1d86-85c8-4425-ad56-d5f86338304f",
             "selected_ids": [
-                "item-ce-edinburgh-evening-001"
+                "item-ce-leeds-night-001",
+                "item-ce-manchester-afternoon-001"
             ],
-            "transaction_id": "2aaa178b-e509-47fb-8e11-df0973e45bad",
-            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18",
-            "mode": "incentive"
+            "transaction_id": "f6589ded-1e94-49d1-b2f8-2a2fbcad2bb5",
+            "obp_id": "obp-22807ad3-23c8-433f-96ab-910d4e113b61",
+            "mode": "emergency"
         }
     },
     {
-        "timestamp": "2025-11-24T20:32:06.485274+00:00",
+        "timestamp": "2025-11-24T22:23:30.407288+00:00",
         "stage": "dispatch",
         "action": "status_requested",
         "details": {
-            "order_id": "order-2210f339-2a33-47e5-9bbb-a72f0d0eff6b",
-            "transaction_id": "2aaa178b-e509-47fb-8e11-df0973e45bad",
-            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18"
-        }
-    },
-    {
-        "timestamp": "2025-11-24T20:32:07.086157+00:00",
-        "stage": "dispatch",
-        "action": "status_requested",
-        "details": {
-            "order_id": "order-2210f339-2a33-47e5-9bbb-a72f0d0eff6b",
-            "transaction_id": "2aaa178b-e509-47fb-8e11-df0973e45bad",
-            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18"
+            "order_id": "order-23bd1d86-85c8-4425-ad56-d5f86338304f",
+            "transaction_id": "f6589ded-1e94-49d1-b2f8-2a2fbcad2bb5",
+            "obp_id": "obp-22807ad3-23c8-433f-96ab-910d4e113b61"
         }
     }
 ]

@@ -1,5 +1,6 @@
 import os
 import openai
+import concurrent.futures
 
 class LLMAgent:
     """Generates natural-language explanations using ASI Cloud LLM."""
@@ -15,7 +16,9 @@ class LLMAgent:
         )
         self.model = model
 
-    def ask(self, prompt, temperature=0.4, max_tokens=300):
+        self.pool = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+
+    def ask(self, prompt, temperature=0.4, max_tokens=400):
         """Send prompt to ASI LLM (OpenAI chat-completion format)."""
 
         try:
@@ -30,3 +33,8 @@ class LLMAgent:
 
         except Exception as e:
             return f"[LLMAgent ERROR] {str(e)}"
+        
+    
+    def ask_async(self, prompt):
+        """Background LLM call."""
+        return self.pool.submit(self.ask, prompt)
