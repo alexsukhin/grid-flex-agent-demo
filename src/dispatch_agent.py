@@ -45,8 +45,6 @@ class DispatchAgent:
         r = requests.post(f"{SANDBOX}/discover", json=payload)
         print("STATUS:", r.status_code)
 
-        print(r.json())
-
         return r.json()
 
     def extract_windows(self, discover_json):
