@@ -5,7 +5,7 @@ class LLMAgent:
     """Generates natural-language explanations using ASI Cloud LLM."""
 
     def __init__(self, api_key=None, model="openai/gpt-oss-20b"):
-        self.api_key = api_key or os.environ.get("ASI_API_KEY")
+        self.api_key = os.environ.get("ASI_API_KEY")
         if not self.api_key:
             raise ValueError("ASI_API_KEY not provided!")
 

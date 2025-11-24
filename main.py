@@ -3,7 +3,7 @@ from src.optimisation.optimisation_agent import OptimisationAgent
 from src.dispatch.dispatch_agent import DispatchAgent
 from src.audit_trail import AuditTrail
 from src.llm.llm_agent import LLMAgent
-from src.llm.prompts import explain_overload, explain_selection, explain_escalation
+from src.llm.prompts import explain_overload, explain_selection, explain_confirm, explain_status
 import time
 
 SANDBOX = "https://deg-hackathon-bap-sandbox.becknprotocol.io/api"
@@ -17,9 +17,7 @@ def main():
     optimiser  = OptimisationAgent(audit)
     dispatcher = DispatchAgent(audit, SANDBOX)
 
-    llm = LLMAgent(
-        api_key="sk-DdBu2719G7iaw-ONtqazxNGmdE-ZhrNWPGVo68Y0mow"
-    )
+    llm = LLMAgent()
 
     required_kw = 0
 
@@ -38,14 +36,25 @@ def main():
 
     on_discover = dispatcher.discover()
     windows = dispatcher.extract_windows(on_discover)
-    selected = optimiser.select_der(windows, required_kw)
 
-    summary = llm.ask(explain_selection(selected, required_kw))
+    selected, mode, meta = optimiser.select_der(windows, required_kw)
+
+    summary = llm.ask(explain_selection(selected, required_kw, mode, meta))
     audit.log_llm_output("selection_explained", summary)
     print("\n[LLM] Selection explanation:\n", summary)
 
-    order_id = dispatcher.confirm(selected, required_kw)
+    confirm_resp = dispatcher.confirm(selected, required_kw, mode)
+    
+    order_id = confirm_resp["order_id"]
+    on_confirm = confirm_resp["on_confirm"]
+
+    print("[LLM] Confirm explanation:")
+    print(llm.ask(explain_confirm(on_confirm)))
+
     dispatcher.status(order_id)
+    on_status = dispatcher.status(order_id)  
+    print("[LLM] Status explanation:")
+    print(llm.ask(explain_status(on_status)))
 
     print("\n=== WORKFLOW COMPLETE ===")
 

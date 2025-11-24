@@ -1,5 +1,5 @@
-from datetime import datetime, timezone
-
+from datetime import datetime, timezone, timedelta
+import uuid
 
 def now():
     return datetime.now(timezone.utc).isoformat()
@@ -36,7 +36,43 @@ class PayloadBuilder:
             }
         }
 
-    def build_confirm(self, order_id, windows, required_kw):
+    def build_confirm(self, order_id, windows, required_kw, mode):
+        """
+        Fully compliant Beckn /confirm payload.
+        Fills:
+        - eventDetails
+        - fulfillment.id
+        - orderType, priority
+        - seller/buyer
+        - proper @context usage
+        - correct beckn:id instead of order_id
+        """
+
+        if mode == "incentive":
+            estimated_incentive = round(required_kw * 0.10, 2)
+            order_type = "resource_activation"
+            priority = "normal"
+            severity = "medium"
+        else:
+            estimated_incentive = 0.0
+            order_type = "emergency_curtailment"
+            priority = "highest"
+            severity = "high"
+
+        event_id = f"df-event-{uuid.uuid4()}"
+        event_start = now()
+        event_end = (datetime.now(timezone.utc) + timedelta(minutes=30)).isoformat()
+
+        def build_event_details():
+            return {
+                "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/DemandFlexibility/v1/context.jsonld",
+                "@type": "beckn:DemandFlexibilityEventDetails",
+                "beckn:eventId": event_id,
+                "beckn:eventType": "peak_demand_surge",
+                "beckn:eventSeverity": severity,
+                "beckn:gridFrequency": 49.85,
+                "beckn:gridFrequencyUnit": "Hz"
+            }
 
         def der_meta(w):
             return {
@@ -46,35 +82,37 @@ class PayloadBuilder:
                 "renewableMix": w.get("renewable_mix"),
                 "carbonIntensity": w.get("carbon_intensity"),
                 "capacityMW": w.get("capacity_mw"),
+                "reservationRequired": w.get("reservation_required"),
+                "responseTimeSeconds": w.get("response_time_s"),
                 "pricePerKW": w.get("price_kw"),
                 "priceCurrency": w.get("price_currency"),
                 "priceStability": w.get("price_stability"),
                 "comfortPenalty": w.get("comfort_penalty"),
                 "availabilityScore": w.get("availability_score"),
-                "responseTimeSeconds": w.get("response_time_s"),
-                "reservationRequired": w.get("reservation_required"),
                 "windowStart": w.get("window_start"),
                 "windowEnd": w.get("window_end"),
                 "windowDuration": w.get("window_duration"),
-                "location": w.get("address_full")
+                "location": w.get("address_full"),
             }
 
         order_items = []
         for idx, w in enumerate(windows):
-            req_kw = min(required_kw, (w.get("capacity_mw") or 0) * 1000)
+            req_kw = min(required_kw, int(w.get("capacity_mw", 0) * 1000))
 
             order_items.append({
                 "@type": "beckn:OrderItem",
-                "beckn:lineId": f"der-{idx+1}",
+                "beckn:lineId": f"activation-{idx+1}",
                 "beckn:orderedItem": w["id"],
                 "beckn:orderItemAttributes": {
+                    "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/DemandFlexibility/v1/context.jsonld",
                     "@type": "beckn:DemandFlexibilityActivation",
                     "beckn:consumerId": w["provider_id"],
                     "beckn:requestedReduction": req_kw,
                     "beckn:requestedReductionUnit": "kW",
-                    "beckn:activationTime": now(),
+                    "beckn:activationTime": event_start,
                     "beckn:duration": w["window_duration"],
-                    "beckn:derMetadata": der_meta(w)
+                    "beckn:eventDetails": build_event_details(),
+                    "beckn:derMetadata": der_meta(w),
                 }
             })
 
@@ -92,22 +130,62 @@ class PayloadBuilder:
                 "bpp_uri": "https://ev-charging.sandbox1.com/bpp",
                 "ttl": "PT30S"
             },
+
             "message": {
                 "order": {
+                    "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
                     "@type": "beckn:Order",
-                    "order_id": order_id,
-                    "orderItems": order_items,
-                    "beckn:totalRequestedReduction": required_kw,
-                    "beckn:totalRequestedReductionUnit": "kW",
+
+                    "beckn:id": order_id,
+
+                    "beckn:orderStatus": "PENDING",
+                    "beckn:seller": "ev-charging.sandbox1.com",
+                    "beckn:buyer": "ev-charging.sandbox1.com",
+
+                    "beckn:orderItems": order_items,
+
                     "beckn:fulfillment": {
+                        "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/core/v2/context.jsonld",
                         "@type": "beckn:Fulfillment",
+                        "beckn:id": f"fulfillment-{order_id}",
                         "beckn:mode": "DEMAND_RESPONSE",
-                        "beckn:status": "PENDING"
+                        "beckn:status": "PENDING",
+                        "beckn:deliveryAttributes": {
+                            "@context": "https://raw.githubusercontent.com/beckn/protocol-specifications-new/refs/heads/draft/schema/DemandFlexibility/v1/context.jsonld",
+                            "@type": "beckn:DemandFlexibilityEvent",
+                            "beckn:eventId": event_id,
+                            "beckn:eventType": "peak_demand_surge",
+                            "beckn:eventSeverity": severity,
+                            "beckn:eventStartTime": event_start,
+                            "beckn:eventEndTime": event_end,
+                            "beckn:totalRequestedReduction": required_kw,
+                            "beckn:totalRequestedReductionUnit": "kW"
+                        }
+                    },
+
+                    "beckn:payment": {
+                        "@type": "beckn:Payment",
+                        "beckn:status": "PENDING",
+                        "beckn:paymentAttributes": {
+                            "@type": "beckn:DemandFlexibilityIncentive",
+                            "beckn:totalEstimatedIncentive": estimated_incentive,
+                            "beckn:currency": "GBP",
+                            "beckn:paymentMethod": "monthly_billing_adjustment",
+                            "beckn:settlementFrequency": "monthly",
+                        }
+                    },
+
+                    "beckn:orderAttributes": {
+                        "@type": "beckn:DemandFlexibilityOrder",
+                        "beckn:orderType": order_type,
+                        "beckn:priority": priority,
+                        "beckn:confirmationTimestamp": now()
                     }
                 }
             }
         }
 
+    
     def build_status(self, order_id):
         return {
             "context": {

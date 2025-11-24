@@ -7,14 +7,20 @@ def explain_overload(data):
     {data}
     """
 
-def explain_selection(windows, required_kw):
+def explain_selection(selected, required_kw, mode, meta):
     return f"""
-    You are an AI assistant summarising the optimisation decision.
-    Explain in one to two short sentences why these DER windows were chosen.
+    You are an AI assistant explaining why these DER windows were selected.
 
-    Required flexibility: {required_kw} kW
+    Required: {required_kw} kW  
+    Mode: {mode.upper()}
+
+    Meta:
+    {meta}
+
     Selected windows:
-    {windows}
+    {selected}
+
+    Explain the reasoning in 1–2 concise sentences.
     """
 
 def explain_escalation(reason):
@@ -22,4 +28,19 @@ def explain_escalation(reason):
     Explain this escalation in one simple sentence.
 
     Reason: {reason}
+    """
+
+def explain_confirm(confirm_json):
+    return f"""
+    Summarise this confirmation event in 2–3 sentences for a grid operator:
+
+    {confirm_json}
+    """
+
+def explain_status(status_json):
+    return f"""
+    Explain what happened in this flexibility event. 
+    Keep it to 2–4 sentences, simple and clear.
+
+    {status_json}
     """

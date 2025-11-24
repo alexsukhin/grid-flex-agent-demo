@@ -1,185 +1,89 @@
 [
     {
-        "timestamp": "2025-11-24T19:34:40.395673+00:00",
+        "timestamp": "2025-11-24T20:31:56.847403+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T19:34:40.395586+00:00",
-            "current_load_kw": 12057,
-            "voltage_kv": 10.658,
-            "frequency_hz": 49.83,
-            "forecast_kw": 12057
+            "timestamp": "2025-11-24T20:31:56.847362+00:00",
+            "current_load_kw": 9009,
+            "voltage_kv": 10.687,
+            "frequency_hz": 49.829,
+            "forecast_kw": 9009
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:41.397248+00:00",
+        "timestamp": "2025-11-24T20:31:57.847861+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T19:34:41.397167+00:00",
-            "current_load_kw": 10617,
-            "voltage_kv": 10.653,
-            "frequency_hz": 49.937,
-            "forecast_kw": 11481.0
+            "timestamp": "2025-11-24T20:31:57.847801+00:00",
+            "current_load_kw": 10773,
+            "voltage_kv": 10.586,
+            "frequency_hz": 49.942,
+            "forecast_kw": 9714.599999999999
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:42.398981+00:00",
+        "timestamp": "2025-11-24T20:31:58.849156+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T19:34:42.398838+00:00",
-            "current_load_kw": 10070,
-            "voltage_kv": 10.699,
-            "frequency_hz": 50.084,
-            "forecast_kw": 10916.599999999999
+            "timestamp": "2025-11-24T20:31:58.849092+00:00",
+            "current_load_kw": 22331,
+            "voltage_kv": 10.557,
+            "frequency_hz": 50.021,
+            "forecast_kw": 14761.16
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:43.401476+00:00",
+        "timestamp": "2025-11-24T20:31:59.850879+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T19:34:43.401355+00:00",
-            "current_load_kw": 11159,
-            "voltage_kv": 10.505,
-            "frequency_hz": 49.715,
-            "forecast_kw": 11013.56
+            "timestamp": "2025-11-24T20:31:59.850817+00:00",
+            "current_load_kw": 27708,
+            "voltage_kv": 10.859,
+            "frequency_hz": 50.034,
+            "forecast_kw": 19939.896
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:44.415855+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T19:34:44.415737+00:00",
-            "current_load_kw": 12601,
-            "voltage_kv": 10.526,
-            "frequency_hz": 50.052,
-            "forecast_kw": 11648.536
-        }
-    },
-    {
-        "timestamp": "2025-11-24T19:34:45.421442+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T19:34:45.421322+00:00",
-            "current_load_kw": 9790,
-            "voltage_kv": 10.877,
-            "frequency_hz": 50.062,
-            "forecast_kw": 10905.121599999999
-        }
-    },
-    {
-        "timestamp": "2025-11-24T19:34:46.422953+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T19:34:46.422830+00:00",
-            "current_load_kw": 19961,
-            "voltage_kv": 10.86,
-            "frequency_hz": 50.032,
-            "forecast_kw": 14527.47296
-        }
-    },
-    {
-        "timestamp": "2025-11-24T19:34:47.424151+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T19:34:47.424036+00:00",
-            "current_load_kw": 11915,
-            "voltage_kv": 10.645,
-            "frequency_hz": 49.827,
-            "forecast_kw": 13482.483776
-        }
-    },
-    {
-        "timestamp": "2025-11-24T19:34:48.424910+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T19:34:48.424787+00:00",
-            "current_load_kw": 10341,
-            "voltage_kv": 10.864,
-            "frequency_hz": 50.073,
-            "forecast_kw": 12225.8902656
-        }
-    },
-    {
-        "timestamp": "2025-11-24T19:34:49.425724+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T19:34:49.425604+00:00",
-            "current_load_kw": 10560,
-            "voltage_kv": 10.523,
-            "frequency_hz": 49.993,
-            "forecast_kw": 11559.534159359999
-        }
-    },
-    {
-        "timestamp": "2025-11-24T19:34:50.426642+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T19:34:50.426433+00:00",
-            "current_load_kw": 12598,
-            "voltage_kv": 10.991,
-            "frequency_hz": 49.857,
-            "forecast_kw": 11974.920495616
-        }
-    },
-    {
-        "timestamp": "2025-11-24T19:34:51.427605+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T19:34:51.427497+00:00",
-            "current_load_kw": 20846,
-            "voltage_kv": 10.675,
-            "frequency_hz": 49.86,
-            "forecast_kw": 15523.352297369598
-        }
-    },
-    {
-        "timestamp": "2025-11-24T19:34:51.427829+00:00",
+        "timestamp": "2025-11-24T20:31:59.851033+00:00",
         "stage": "prediction",
         "action": "overload_detected",
         "details": {
-            "required_kw": 523
+            "required_kw": 4939
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:53.312756+00:00",
+        "timestamp": "2025-11-24T20:32:01.241092+00:00",
         "stage": "llm",
         "action": "overload_explanation",
         "details": {
-            "text": "It looks like the system is asking for about 523\u202fkW of power, which is more than it can safely handle right now, so it\u2019s flagging an overload."
+            "text": "The system just flagged a power surge that\u2019s a bit too high for its current load."
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:53.313045+00:00",
+        "timestamp": "2025-11-24T20:32:01.241195+00:00",
         "stage": "dispatch",
         "action": "discover_sent",
         "details": {
-            "message_id": "4d301089-0721-492a-9b02-979c450cc43a",
-            "obp_id": "obp-4b3d194d-b3c3-4af7-8ffe-674ffbb91575",
-            "transaction_id": "0fedb7b5-bbb9-4a4a-8206-7ca280164289"
+            "message_id": "89ac52dc-42fa-4832-9bc3-ed6380677e20",
+            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18",
+            "transaction_id": "2aaa178b-e509-47fb-8e11-df0973e45bad"
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:54.184637+00:00",
+        "timestamp": "2025-11-24T20:32:02.006384+00:00",
         "stage": "dispatch",
         "action": "discover_received",
         "details": {
             "count": 8,
-            "obp_id": "obp-4b3d194d-b3c3-4af7-8ffe-674ffbb91575"
+            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18"
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:54.184853+00:00",
+        "timestamp": "2025-11-24T20:32:02.006446+00:00",
         "stage": "optimisation",
         "action": "escalation_triggered",
         "details": {
@@ -189,50 +93,81 @@
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:54.185113+00:00",
+        "timestamp": "2025-11-24T20:32:02.006454+00:00",
+        "stage": "optimisation",
+        "action": "escalation_triggered",
+        "details": {
+            "reason": "slow_der_response_time",
+            "obp_compliant": true,
+            "severity": "WARN"
+        }
+    },
+    {
+        "timestamp": "2025-11-24T20:32:02.006458+00:00",
+        "stage": "optimisation",
+        "action": "escalation_triggered",
+        "details": {
+            "reason": "mode_selected:incentive",
+            "obp_compliant": true,
+            "severity": "WARN"
+        }
+    },
+    {
+        "timestamp": "2025-11-24T20:32:02.006620+00:00",
         "stage": "optimisation",
         "action": "der_selected",
         "details": {
-            "required_kw": 523,
+            "required_kw": 4939,
             "selected": [
                 {
-                    "id": "item-ce-liverpool-evening-001",
-                    "capacity_kw": 5400,
-                    "region": "Liverpool",
-                    "score": 75.9729378521553
+                    "id": "item-ce-edinburgh-evening-001",
+                    "capacity_kw": 5800,
+                    "region": "Edinburgh",
+                    "score": 74.2067718727383
                 }
             ]
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:55.962218+00:00",
+        "timestamp": "2025-11-24T20:32:03.704967+00:00",
         "stage": "llm",
         "action": "selection_explained",
         "details": {
-            "text": "The 4\u2011hour evening window (17:00\u201121:00) in Liverpool was chosen because it delivers far more than the 523\u202fkW flexibility needed, ensuring a comfortable margin. It also offers a high renewable mix (82\u202f%) and low carbon intensity (115\u202fgCO\u2082/kWh), while its strong availability score and short response time make it a reliable, low\u2011impact option."
+            "text": "The single 4\u2011hour window (18:00\u201122:00) from GridFlex Agent UK provides 5.8\u202fMW of capacity, comfortably exceeding the 4.939\u202fMW requirement and eliminating any shortfall. It offers a high renewable mix (85\u202f%) and low carbon intensity (110\u202fg\u202fCO\u2082/kWh), a strong availability score (0.86), and a modest comfort penalty, making it the most incentive\u2011aligned choice."
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:55.962654+00:00",
+        "timestamp": "2025-11-24T20:32:03.705153+00:00",
         "stage": "dispatch",
         "action": "confirm_sent",
         "details": {
-            "order_id": "order-de46eaab-c4d9-4e93-bc7d-35a2dc1dfe84",
+            "order_id": "order-2210f339-2a33-47e5-9bbb-a72f0d0eff6b",
             "selected_ids": [
-                "item-ce-liverpool-evening-001"
+                "item-ce-edinburgh-evening-001"
             ],
-            "transaction_id": "0fedb7b5-bbb9-4a4a-8206-7ca280164289",
-            "obp_id": "obp-4b3d194d-b3c3-4af7-8ffe-674ffbb91575"
+            "transaction_id": "2aaa178b-e509-47fb-8e11-df0973e45bad",
+            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18",
+            "mode": "incentive"
         }
     },
     {
-        "timestamp": "2025-11-24T19:34:56.608537+00:00",
+        "timestamp": "2025-11-24T20:32:06.485274+00:00",
         "stage": "dispatch",
         "action": "status_requested",
         "details": {
-            "order_id": "order-de46eaab-c4d9-4e93-bc7d-35a2dc1dfe84",
-            "transaction_id": "0fedb7b5-bbb9-4a4a-8206-7ca280164289",
-            "obp_id": "obp-4b3d194d-b3c3-4af7-8ffe-674ffbb91575"
+            "order_id": "order-2210f339-2a33-47e5-9bbb-a72f0d0eff6b",
+            "transaction_id": "2aaa178b-e509-47fb-8e11-df0973e45bad",
+            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18"
+        }
+    },
+    {
+        "timestamp": "2025-11-24T20:32:07.086157+00:00",
+        "stage": "dispatch",
+        "action": "status_requested",
+        "details": {
+            "order_id": "order-2210f339-2a33-47e5-9bbb-a72f0d0eff6b",
+            "transaction_id": "2aaa178b-e509-47fb-8e11-df0973e45bad",
+            "obp_id": "obp-6e519066-6fe6-486b-b0eb-7291f6429f18"
         }
     }
 ]

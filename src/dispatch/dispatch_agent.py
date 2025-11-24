@@ -49,7 +49,7 @@ class DispatchAgent:
         print(f"[DispatchAgent] Extracted {len(windows)} DER windows")
         return windows
 
-    def confirm(self, selected_windows, required_kw):
+    def confirm(self, selected_windows, required_kw, mode):
         if not isinstance(selected_windows, list):
             selected_windows = [selected_windows]
 
@@ -59,15 +59,20 @@ class DispatchAgent:
             "order_id": order_id,
             "selected_ids": [w["id"] for w in selected_windows],
             "transaction_id": self.transaction_id,
-            "obp_id": self.obp_id
+            "obp_id": self.obp_id,
+            "mode": mode,
         })
 
-        payload = self.payloads.build_confirm(order_id, selected_windows, required_kw)
+        payload = self.payloads.build_confirm(order_id, selected_windows, required_kw, mode)
 
         print("\n=== /confirm ===")
-        self.client.post("/confirm", payload)
+        on_confirm = self.client.post("/confirm", payload)
 
-        return order_id
+        return {
+            "order_id": order_id,
+            "on_confirm": on_confirm
+        }
+
 
     def status(self, order_id):
         self.audit.log_status_requested({
