@@ -1,55 +1,46 @@
 [
     {
-        "timestamp": "2025-11-24T17:15:38.205243+00:00",
+        "timestamp": "2025-11-24T17:41:25.660640+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T17:15:38.204941+00:00",
-            "current_load_kw": 14318,
-            "voltage_kv": 10.917,
-            "frequency_hz": 49.777
+            "timestamp": "2025-11-24T17:41:25.660532+00:00",
+            "current_load_kw": 12551,
+            "voltage_kv": 10.579,
+            "frequency_hz": 50.099,
+            "forecast_kw": 12551
         }
     },
     {
-        "timestamp": "2025-11-24T17:15:39.205519+00:00",
+        "timestamp": "2025-11-24T17:41:26.660905+00:00",
         "stage": "prediction",
         "action": "telemetry_read",
         "details": {
-            "timestamp": "2025-11-24T17:15:39.205473+00:00",
-            "current_load_kw": 11584,
-            "voltage_kv": 10.665,
-            "frequency_hz": 49.848
+            "timestamp": "2025-11-24T17:41:26.660857+00:00",
+            "current_load_kw": 26607,
+            "voltage_kv": 10.807,
+            "frequency_hz": 49.807,
+            "forecast_kw": 18173.4
         }
     },
     {
-        "timestamp": "2025-11-24T17:15:40.205892+00:00",
-        "stage": "prediction",
-        "action": "telemetry_read",
-        "details": {
-            "timestamp": "2025-11-24T17:15:40.205856+00:00",
-            "current_load_kw": 24842,
-            "voltage_kv": 10.782,
-            "frequency_hz": 49.871
-        }
-    },
-    {
-        "timestamp": "2025-11-24T17:15:40.206030+00:00",
+        "timestamp": "2025-11-24T17:41:26.661003+00:00",
         "stage": "prediction",
         "action": "overload_detected",
         "details": {
-            "required_kw": 9842
+            "required_kw": 3173
         }
     },
     {
-        "timestamp": "2025-11-24T17:15:40.206104+00:00",
+        "timestamp": "2025-11-24T17:41:26.661058+00:00",
         "stage": "dispatch",
         "action": "discover_sent",
         "details": {
-            "message_id": "8610f328-2928-4fa5-9fe9-4bd9e4da8d7b"
+            "message_id": "0d360491-3035-400a-add2-31ff9a8a42ad"
         }
     },
     {
-        "timestamp": "2025-11-24T17:15:40.986824+00:00",
+        "timestamp": "2025-11-24T17:41:27.386167+00:00",
         "stage": "dispatch",
         "action": "discover_received",
         "details": {
@@ -57,43 +48,37 @@
         }
     },
     {
-        "timestamp": "2025-11-24T17:15:40.986982+00:00",
+        "timestamp": "2025-11-24T17:41:27.386298+00:00",
         "stage": "optimisation",
         "action": "der_selected",
         "details": {
-            "required_kw": 9842,
+            "required_kw": 3173,
             "selected": [
                 {
-                    "id": "item-ce-liverpool-evening-001",
-                    "capacity_kw": 5400,
-                    "region": "Liverpool"
-                },
-                {
-                    "id": "item-ce-manchester-afternoon-001",
-                    "capacity_kw": 4500,
-                    "region": "Manchester"
+                    "id": "item-ce-glasgow-afternoon-002",
+                    "capacity_kw": 7000,
+                    "region": "Glasgow"
                 }
             ]
         }
     },
     {
-        "timestamp": "2025-11-24T17:15:40.987123+00:00",
+        "timestamp": "2025-11-24T17:41:27.386337+00:00",
         "stage": "dispatch",
         "action": "confirm_sent",
         "details": {
-            "order_id": "order-8b66c56c-e7e3-47b6-9896-5b7ac7bd6e0e",
+            "order_id": "order-89991cd4-2632-4859-ad83-d30fdb34e94e",
             "selected_ids": [
-                "item-ce-liverpool-evening-001",
-                "item-ce-manchester-afternoon-001"
+                "item-ce-glasgow-afternoon-002"
             ]
         }
     },
     {
-        "timestamp": "2025-11-24T17:15:41.521498+00:00",
+        "timestamp": "2025-11-24T17:41:27.953070+00:00",
         "stage": "dispatch",
         "action": "status_requested",
         "details": {
-            "order_id": "order-8b66c56c-e7e3-47b6-9896-5b7ac7bd6e0e"
+            "order_id": "order-89991cd4-2632-4859-ad83-d30fdb34e94e"
         }
     }
 ]
