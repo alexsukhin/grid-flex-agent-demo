@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 import time
+import uuid
 
 from src.prediction.prediction_agent import PredictionAgent
 from src.optimisation.optimisation_agent import OptimisationAgent
@@ -18,13 +19,18 @@ SANDBOX = "https://deg-hackathon-bap-sandbox.becknprotocol.io/api"
 
 router = APIRouter()
 
+LLM_SESSIONS = {}
+SESSION_TTL_SECONDS = 300 
+
 
 @router.get("/workflow/run")
 def run_workflow():
     """
-    Run the full Project Reflex workflow and return a JSON summary.
+    Run the full Project Reflex workflow and return a JSON summary
+    *without* waiting for LLM responses.
+    The LLM summaries are computed in the background and can be fetched
+    via /workflow/llm/{session_id}.
     """
-
     try:
         audit = AuditTrail()
         predictor = PredictionAgent(audit)
@@ -62,27 +68,28 @@ def run_workflow():
 
         end = time.time()
 
-        overload_msg = overload_future.result()
-        selection_msg = selection_future.result()
-        confirm_msg = confirm_future.result()
-        status_msg = status_future.result()
+        session_id = str(uuid.uuid4())
+        LLM_SESSIONS[session_id] = {
+            "created_at": time.time(),
+            "overload": overload_future,
+            "selection": selection_future,
+            "confirm": confirm_future,
+            "status": status_future,
+        }
 
         return JSONResponse(
             {
+                "session_id": session_id,
                 "required_kw": required_kw,
                 "mode": mode,
                 "meta": meta,
                 "selected": selected,
                 "order_id": order_id,
+                "all_windows": windows,
                 "discover_raw": on_discover,
                 "confirm_raw": on_confirm,
                 "status_raw": on_status,
-                "llm": {
-                    "overload": overload_msg,
-                    "selection": selection_msg,
-                    "confirm": confirm_msg,
-                    "status": status_msg,
-                },
+                "llm": None,
                 "performance_seconds": round(end - start, 3),
                 "audit_log": audit.logs,
             }
@@ -90,3 +97,46 @@ def run_workflow():
 
     except Exception as e:
         return JSONResponse({"error": str(e)}, status_code=500)
+
+
+@router.get("/workflow/llm/{session_id}")
+def get_llm_summaries(session_id: str):
+    """
+    Return LLM summaries for a given workflow session.
+    If a summary isn't ready yet, it returns null for that field.
+    """
+    session = LLM_SESSIONS.get(session_id)
+    if not session:
+        return JSONResponse(
+            {"error": "unknown_session", "session_id": session_id},
+            status_code=404,
+        )
+
+    def safe_result(future):
+        if not future.done():
+            return None
+        try:
+            return future.result()
+        except Exception as e:
+            return f"LLM error: {e}"
+
+    overload_msg = safe_result(session["overload"])
+    selection_msg = safe_result(session["selection"])
+    confirm_msg = safe_result(session["confirm"])
+    status_msg = safe_result(session["status"])
+
+    llm = {
+        "overload": overload_msg,
+        "selection": selection_msg,
+        "confirm": confirm_msg,
+        "status": status_msg,
+    }
+
+    complete = all(v is not None for v in llm.values())
+
+    return JSONResponse(
+        {
+            **llm,
+            "complete": complete,
+        }
+    )

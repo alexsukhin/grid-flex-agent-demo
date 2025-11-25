@@ -1,9 +1,5 @@
-import Dashboard from "./pages/Dashboard";
+import Layout from "./pages/Layout";
 
 export default function App() {
-  return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
-      <Dashboard />
-    </div>
-  );
+  return <Layout />;
 }

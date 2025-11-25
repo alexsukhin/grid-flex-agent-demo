@@ -13,6 +13,7 @@ class BecknAPIClient:
         print("STATUS:", response.status_code)
 
         try:
+            print(response.json())
             return response.json()
         except Exception:
             return response.text
