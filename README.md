@@ -15,7 +15,7 @@ It reflects the core orchestration loop described in the DEG hackathon materials
 
 ## Demo Video
 
-Check out the demo of Live Messenger on YouTube:
+Check out the demo of Grid Flex Agent on YouTube:
 
 [Watch the demo on YouTube](https://www.youtube.com/watch?v=Fs1ccy__-T8)
 
