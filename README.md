@@ -12,3 +12,11 @@ It reflects the core orchestration loop described in the DEG hackathon materials
 - Prediction Agent: forecasts load and triggers flexibility requests
 - Optimisation Agent: selects the best DERs using a small knapsack-style model
 - Dispatch Agent: activates chosen DERs and logs decisions
+
+## Demo Video
+
+Check out the demo of Live Messenger on YouTube:
+
+[Watch the demo on YouTube](https://www.youtube.com/watch?v=Fs1ccy__-T8)
+
+> Click the link to watch the full video on YouTube.
